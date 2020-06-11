@@ -1,0 +1,10 @@
+
+<odoo>
+      <menuitem id="main" name="Medical "
+                  />
+
+
+      <menuitem id="medical_setup" name="Medical Setup" parent="main"
+                  action="medical_price_action" sequence="0"/>
+
+</odoo>

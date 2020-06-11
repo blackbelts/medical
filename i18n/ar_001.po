@@ -1,0 +1,256 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* medical
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-10 16:09+0000\n"
+"PO-Revision-Date: 2020-05-10 16:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_cover__benefit
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__benefit
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__benefit
+msgid "Benefit"
+msgstr "المزايا"
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_cover__cover_id
+msgid "Cover"
+msgstr "التغطيات"
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price__cover_lines
+#: model_terms:ir.ui.view,arch_db:medical.medical_price_view_form
+msgid "Covers"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_api__create_uid
+#: model:ir.model.fields,field_description:medical.field_medical_cover__create_uid
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__create_uid
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__create_uid
+#: model:ir.model.fields,field_description:medical.field_medical_price__create_uid
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_api__create_date
+#: model:ir.model.fields,field_description:medical.field_medical_cover__create_date
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__create_date
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__create_date
+#: model:ir.model.fields,field_description:medical.field_medical_price__create_date
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_api__display_name
+#: model:ir.model.fields,field_description:medical.field_medical_cover__display_name
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__display_name
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__display_name
+#: model:ir.model.fields,field_description:medical.field_medical_price__display_name
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_cover__en_benefit
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__en_benefit
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__en_benefit
+msgid "English Benefit"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_cover__en_value
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__en_value
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__en_value
+msgid "English Value"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__from_age
+msgid "From Age"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_helpdesk_lite_ticket
+msgid "Helpdesk Tickets"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_api__id
+#: model:ir.model.fields,field_description:medical.field_medical_cover__id
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__id
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__id
+#: model:ir.model.fields,field_description:medical.field_medical_price__id
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__id
+msgid "ID"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields.selection,name:medical.selection__medical_price__package__individual
+msgid "Individual"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__internal_id
+msgid "Internal"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price__internal_lines
+#: model_terms:ir.ui.view,arch_db:medical.medical_price_view_form
+msgid "Internal Hospital Treatment"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_api____last_update
+#: model:ir.model.fields,field_description:medical.field_medical_cover____last_update
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment____last_update
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services____last_update
+#: model:ir.model.fields,field_description:medical.field_medical_price____last_update
+#: model:ir.model.fields,field_description:medical.field_medical_price_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_api__write_uid
+#: model:ir.model.fields,field_description:medical.field_medical_cover__write_uid
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__write_uid
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__write_uid
+#: model:ir.model.fields,field_description:medical.field_medical_price__write_uid
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_api__write_date
+#: model:ir.model.fields,field_description:medical.field_medical_cover__write_date
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__write_date
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__write_date
+#: model:ir.model.fields,field_description:medical.field_medical_price__write_date
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: medical
+#: model:ir.ui.menu,name:medical.main
+msgid "Medical "
+msgstr "التامين الطبى"
+
+#. module: medical
+#: model:ir.actions.act_window,name:medical.medical_price_action
+msgid "Medical Price Table"
+msgstr "جدول اسعار التامين الطبى"
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_helpdesk_lite_ticket__medical_product
+msgid "Medical Product"
+msgstr " المنتج الطبى"
+
+#. module: medical
+#: model:ir.ui.menu,name:medical.medical_setup
+msgid "Medical Setup"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__outpatient_id
+msgid "Outpatient"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price__outpatient_lines
+#: model_terms:ir.ui.view,arch_db:medical.medical_price_view_form
+msgid "Outpatient Services"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price__package
+msgid "Package For"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__price
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__price_id
+#: model_terms:ir.ui.view,arch_db:medical.medical_price_view_form
+msgid "Price"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price__price_lines
+msgid "Prices"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price__product_name
+msgid "Product Name"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields.selection,name:medical.selection__medical_price__package__sme
+msgid "SME"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_medical_price
+msgid "Set up Price tables"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_cover__sort
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__sort
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__sort
+msgid "Sort"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_price_line__to_age
+msgid "To Age"
+msgstr ""
+
+#. module: medical
+#: model:ir.model.fields,field_description:medical.field_medical_cover__value
+#: model:ir.model.fields,field_description:medical.field_medical_internal_hospital_treatment__value
+#: model:ir.model.fields,field_description:medical.field_medical_outpatient_services__value
+msgid "Value"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_medical_api
+msgid "medical.api"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_medical_cover
+msgid "medical.cover"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_medical_internal_hospital_treatment
+msgid "medical.internal.hospital.treatment"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_medical_outpatient_services
+msgid "medical.outpatient.services"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_medical_price_line
+msgid "medical.price.line"
+msgstr ""
+
+#. module: medical
+#: model:ir.model,name:medical.model_ticket_api
+msgid "ticket.api"
+msgstr ""

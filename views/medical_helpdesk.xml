@@ -1,0 +1,20 @@
+<odoo>
+    <record id="help_desk_inherit" model="ir.ui.view">
+        <field name="name">Help Disk</field>
+        <field name="model">helpdesk_lite.ticket</field>
+        <field name="inherit_id" ref="helpdesk_lite.helpdesk_ticket_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="after">
+                <!-- Add your fields or attributes here -->
+                <field name="medical_product"/>
+
+
+            </xpath>
+
+<!--            <xpath expr="//field[@name='job']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+</odoo>
