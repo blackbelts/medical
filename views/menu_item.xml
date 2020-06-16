@@ -1,7 +1,7 @@
 
 <odoo>
       <menuitem id="main" name="Medical "
-                  />
+                groups="medical.manager_medical_group"  />
 
 
       <menuitem id="medical_setup" name="Medical Setup" parent="main"
