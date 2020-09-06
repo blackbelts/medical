@@ -281,10 +281,11 @@ class ticketApi(models.Model):
             name = 'Corporate Medical Ticket'
         else:
             name = 'SMEs Medical Ticket'
+        type = 'medical'
         ids = self.env['medical.price'].search([('product_name','=', data.get('product'))])
         ticket = self.env['helpdesk_lite.ticket'].create(
                 {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
-                'email_from': data.get('mail'), 'medical_product': ids.id})
+                'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type':type})
         return ticket.id
 
 
