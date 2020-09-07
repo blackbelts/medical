@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='phone']" position="after">
                 <!-- Add your fields or attributes here -->
-                <field name="medical_product"/>
+                <field name="medical_product"  attrs="{'invisible': [('ticket_type', '!=','medical')]}"/>
 
 
             </xpath>

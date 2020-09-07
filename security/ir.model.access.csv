@@ -5,7 +5,6 @@ access_setup2,setup.setup2,model_medical_cover,base.group_user,1,1,1,1
 access_setup3,setup.setup3,model_medical_internal_hospital_treatment,base.group_user,1,1,1,1
 access_setup4,setup.setup4,model_medical_outpatient_services,base.group_user,1,1,1,1
 access_setup5,setup.setup5,model_medical_api,base.group_user,1,1,1,1
-access_setup6,setup.setup6,model_ticket_api,base.group_user,1,1,1,1
 
 
 

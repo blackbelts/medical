@@ -262,14 +262,6 @@ class MedicalApi(models.Model):
             result.append({'name': ' Outpatient Services', 'plans': outpatient})
             print(result)
             return result
-class aropeHelpDesk(models.Model):
-    _inherit = 'helpdesk_lite.ticket'
-
-
-    medical_product = fields.Many2one('medical.price', string="Medical Product", ondelete='cascade')
-
-class ticketApi(models.Model):
-    _inherit = 'ticket.api'
 
     @api.model
     def create_medical_ticket(self, data):
@@ -281,11 +273,19 @@ class ticketApi(models.Model):
             name = 'Corporate Medical Ticket'
         else:
             name = 'SMEs Medical Ticket'
-        ids = self.env['medical.price'].search([('product_name','=', data.get('product'))])
+        type = 'medical'
+        ids = self.env['medical.price'].search([('product_name', '=', data.get('product'))])
         ticket = self.env['helpdesk_lite.ticket'].create(
-                {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
-                'email_from': data.get('mail'), 'medical_product': ids.id})
+            {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
+             'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type})
         return ticket.id
+class aropeHelpDesk(models.Model):
+    _inherit = 'helpdesk_lite.ticket'
+    medical_product = fields.Many2one('medical.price', string="Medical Product", ondelete='cascade')
+
+
+
+
 
 
             # for product in self.env['medical.price'].search([('package', '=', data.get('type'))]):
