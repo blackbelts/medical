@@ -17,6 +17,7 @@
         'security/security.xml',
         'views/setup.xml',
         'views/medical_helpdesk.xml',
+        'views/covers.xml',
         'views/menu_item.xml',
 
 

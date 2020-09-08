@@ -2,9 +2,10 @@
 <odoo>
       <menuitem id="main" name="Medical "
                 groups="medical.manager_medical_group"  />
-
+      <menuitem id="medical_covers_type_setup" name="Covers Type Setup" parent="main"
+                  action="medical_covers_type_action" sequence="0"/>
 
       <menuitem id="medical_setup" name="Medical Setup" parent="main"
-                  action="medical_price_action" sequence="0"/>
+                  action="medical_price_action" sequence="1"/>
 
 </odoo>

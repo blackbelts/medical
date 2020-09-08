@@ -31,32 +31,33 @@
                                     <field name="value"/>
                                     <field name="en_benefit"/>
                                     <field name="en_value"/>
+                                    <field name="type"/>
                                     <field name="sort"/>
                                 </tree>
                             </field>
                         </page>
-                        <page string="Internal Hospital Treatment" >
-                            <field name="internal_lines">
-                                <tree editable="bottom">
-                                    <field name="benefit"/>
-                                    <field name="value"/>
-                                    <field name="en_benefit"/>
-                                    <field name="en_value"/>
-                                    <field name="sort"/>
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="Outpatient Services" >
-                            <field name="outpatient_lines">
-                                <tree editable="bottom">
-                                    <field name="benefit"/>
-                                    <field name="value"/>
-                                    <field name="en_benefit"/>
-                                    <field name="en_value"/>
-                                    <field name="sort"/>
-                                </tree>
-                            </field>
-                        </page>
+<!--                        <page string="Internal Hospital Treatment" >-->
+<!--                            <field name="internal_lines">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="benefit"/>-->
+<!--                                    <field name="value"/>-->
+<!--                                    <field name="en_benefit"/>-->
+<!--                                    <field name="en_value"/>-->
+<!--                                    <field name="sort"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                        <page string="Outpatient Services" >-->
+<!--                            <field name="outpatient_lines">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="benefit"/>-->
+<!--                                    <field name="value"/>-->
+<!--                                    <field name="en_benefit"/>-->
+<!--                                    <field name="en_value"/>-->
+<!--                                    <field name="sort"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
 
                     </notebook>
                 </sheet>
