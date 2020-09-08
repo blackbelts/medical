@@ -206,6 +206,23 @@ class MedicalApi(models.Model):
             main = []
         print(result)
         return result
+
+    @api.model
+    def create_medical_ticket(self, data):
+        if data.get('type') == 'individual':
+            name = 'Individual Medical Ticket'
+        elif data.get('type') == 'family':
+            name = 'Family Medical Ticket'
+        elif data.get('type') == 'medicalCorporate':
+            name = 'Corporate Medical Ticket'
+        else:
+            name = 'SMEs Medical Ticket'
+        type = 'medical'
+        ids = self.env['medical.price'].search([('product_name', '=', data.get('product'))])
+        ticket = self.env['helpdesk_lite.ticket'].create(
+            {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
+             'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type})
+        return ticket.id
         # for cover in self.env['medical.internal.hospital.treatment'].search([('internal_id.package','=',package)],order='sort asc'):
         #     print(cover.benefit)
         #     res = []
@@ -285,25 +302,11 @@ class aropeHelpDesk(models.Model):
 
     medical_product = fields.Many2one('medical.price', string="Medical Product", ondelete='cascade')
 
-class ticketApi(models.Model):
-    _inherit = 'ticket.api'
 
-    @api.model
-    def create_medical_ticket(self, data):
-        if data.get('type') == 'individual':
-            name = 'Individual Medical Ticket'
-        elif data.get('type') == 'family':
-            name = 'Family Medical Ticket'
-        elif data.get('type') == 'medicalCorporate':
-            name = 'Corporate Medical Ticket'
-        else:
-            name = 'SMEs Medical Ticket'
-        type = 'medical'
-        ids = self.env['medical.price'].search([('product_name','=', data.get('product'))])
-        ticket = self.env['helpdesk_lite.ticket'].create(
-                {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
-                'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type':type})
-        return ticket.id
+
+
+
+
 
 
             # for product in self.env['medical.price'].search([('package', '=', data.get('type'))]):
