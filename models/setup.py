@@ -23,7 +23,7 @@ class MedicalPriceTable(models.Model):
 
     # @api.multi
     def price(self):
-        self.env['medical.api'].get_price({'type':'individual','dob':['1999-5-4'], 'lang':'ar'})
+        self.env['medical.api'].get_price({'type':'individual','dob':['1999-5-4'], 'lang':'en'})
 
 class MedicalPriceTableLines(models.Model):
     _name = 'medical.price.line'
@@ -166,6 +166,7 @@ class MedicalApi(models.Model):
         else:
             package = 'sme'
         for type in self.env['medical.covers.type'].search([]):
+            main = []
             for cover in self.env['medical.cover'].search([('cover_id.package','=',package)],order='sort asc'):
                 # print(cover.benefit_key)
                 res = []
@@ -180,6 +181,7 @@ class MedicalApi(models.Model):
                                     res.append({rec.product_name: val})
                     if cover.benefit not in maindic.keys():
                         maindic[cover.benefit] = res
+
                 elif data.get('lang') == 'en':
                     for rec in self.env['medical.price'].search([('package', '=', package)]):
                         print(rec.product_name)
@@ -203,7 +205,7 @@ class MedicalApi(models.Model):
                 result.append({'name': type.ar_type, 'plans': main})
             elif data.get('lang') == 'en':
                 result.append({'name': type.type, 'plans': main})
-            main = []
+
         print(result)
         return result
 
