@@ -166,8 +166,7 @@ class MedicalApi(models.Model):
         else:
             package = 'sme'
         for type in self.env['medical.covers.type'].search([]):
-            main = []
-            for cover in self.env['medical.cover'].search([('cover_id.package','=',package)],order='sort asc'):
+            for cover in self.env['medical.cover'].search([('cover_id.package','=',package),('type', '=', type.id)],order='sort asc'):
                 # print(cover.benefit_key)
                 res = []
                 if data.get('lang') == 'ar':
@@ -175,7 +174,6 @@ class MedicalApi(models.Model):
                         # print(rec.product_name)
 
                         for covers in rec.cover_lines:
-                            if covers.type.id == type.id:
                                 if covers.benefit == cover.benefit:
                                     val = covers.value
                                     res.append({rec.product_name: val})
@@ -187,7 +185,6 @@ class MedicalApi(models.Model):
                         print(rec.product_name)
 
                         for covers in rec.cover_lines:
-                            if covers.type.id == type.id:
                                 if covers.en_benefit == cover.en_benefit:
                                     val = covers.en_value
                                     res.append({rec.product_name: val})
@@ -205,6 +202,7 @@ class MedicalApi(models.Model):
                 result.append({'name': type.ar_type, 'plans': main})
             elif data.get('lang') == 'en':
                 result.append({'name': type.type, 'plans': main})
+            main = []
 
         print(result)
         return result
