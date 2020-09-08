@@ -166,9 +166,10 @@ class MedicalApi(models.Model):
         else:
             package = 'sme'
         for type in self.env['medical.covers.type'].search([]):
+            maindic = {}
             for cover in self.env['medical.cover'].search([('cover_id.package','=',package),('type', '=', type.id)],order='sort asc'):
                 # print(cover.benefit_key)
-                maindic = {}
+
                 res = []
                 if data.get('lang') == 'ar':
                     for rec in self.env['medical.price'].search([('package', '=', package)]):
