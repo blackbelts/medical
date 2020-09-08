@@ -155,7 +155,7 @@ class MedicalApi(models.Model):
         outpatient=[]
         result = []
         res=[]
-        maindic={}
+
         internaldic={}
         outpatientdic={}
         dprice = self.calculate_price(data)
@@ -168,6 +168,7 @@ class MedicalApi(models.Model):
         for type in self.env['medical.covers.type'].search([]):
             for cover in self.env['medical.cover'].search([('cover_id.package','=',package),('type', '=', type.id)],order='sort asc'):
                 # print(cover.benefit_key)
+                maindic = {}
                 res = []
                 if data.get('lang') == 'ar':
                     for rec in self.env['medical.price'].search([('package', '=', package)]):
