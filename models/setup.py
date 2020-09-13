@@ -299,13 +299,7 @@ class MedicalApi(models.Model):
         #     print(result)
         #     return result
 class aropeHelpDesk(models.Model):
-<<<<<<< HEAD
     _inherit = 'quoate'
-=======
-    _inherit = 'helpdesk_lite.ticket'
-
-
->>>>>>> cee6555ab4c7bb8905fa64d9d41f8949a7512e67
     medical_product = fields.Many2one('medical.price', string="Medical Product", ondelete='cascade')
 
 
