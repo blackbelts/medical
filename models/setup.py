@@ -275,12 +275,12 @@ class MedicalApi(models.Model):
             name = 'SMEs Medical Ticket'
         type = 'medical'
         ids = self.env['medical.price'].search([('product_name', '=', data.get('product'))])
-        ticket = self.env['helpdesk_lite.ticket'].create(
+        ticket = self.env['quoate'].create(
             {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
              'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type})
         return ticket.id
 class aropeHelpDesk(models.Model):
-    _inherit = 'helpdesk_lite.ticket'
+    _inherit = 'quoate'
     medical_product = fields.Many2one('medical.price', string="Medical Product", ondelete='cascade')
 
 

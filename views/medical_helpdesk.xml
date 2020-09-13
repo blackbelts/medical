@@ -1,8 +1,8 @@
 <odoo>
-    <record id="help_desk_inherit" model="ir.ui.view">
+    <record id="help_desk_inherit_quoate" model="ir.ui.view">
         <field name="name">Help Disk</field>
-        <field name="model">helpdesk_lite.ticket</field>
-        <field name="inherit_id" ref="helpdesk_lite.helpdesk_ticket_form_view"/>
+        <field name="model">quoate</field>
+        <field name="inherit_id" ref="helpdesk_inherit.help_desk_quoate"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='phone']" position="after">
                 <!-- Add your fields or attributes here -->
