@@ -2,8 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_setup,setup.setup,model_medical_price,base.group_user,1,1,1,1
 access_setup1,setup.setup1,model_medical_price_line,base.group_user,1,1,1,1
 access_setup2,setup.setup2,model_medical_cover,base.group_user,1,1,1,1
-access_setup3,setup.setup3,model_medical_internal_hospital_treatment,base.group_user,1,1,1,1
-access_setup4,setup.setup4,model_medical_outpatient_services,base.group_user,1,1,1,1
+access_setup3,setup.setup3,model_medical_covers_type,base.group_user,1,1,1,1
 access_setup5,setup.setup5,model_medical_api,base.group_user,1,1,1,1
 
 
