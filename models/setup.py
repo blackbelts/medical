@@ -18,8 +18,8 @@ class MedicalPriceTable(models.Model):
 
     price_lines = fields.One2many('medical.price.line','price_id',string='Prices')
     cover_lines = fields.One2many('medical.cover','cover_id',string='Covers')
-    internal_lines = fields.One2many('medical.internal.hospital.treatment', 'internal_id', string='Internal Hospital Treatment')
-    outpatient_lines = fields.One2many('medical.outpatient.services', 'outpatient_id', string='Outpatient Services')
+    # internal_lines = fields.One2many('medical.internal.hospital.treatment', 'internal_id', string='Internal Hospital Treatment')
+    # outpatient_lines = fields.One2many('medical.outpatient.services', 'outpatient_id', string='Outpatient Services')
 
     # @api.multi
     def price(self):
@@ -33,6 +33,13 @@ class MedicalPriceTableLines(models.Model):
     price = fields.Float('Price')
     price_id = fields.Many2one('medical.price', ondelete='cascade')
 
+class MedicalCoversType(models.Model):
+    _name = 'medical.covers.type'
+    _rec_name = 'type'
+
+    type = fields.Char('Type')
+    ar_type = fields.Char('Arabic Type')
+
 class MedicalCovers(models.Model):
       _name = 'medical.cover'
 
@@ -40,29 +47,30 @@ class MedicalCovers(models.Model):
       value = fields.Text(string='Value')
       en_benefit = fields.Text(string='English Benefit')
       en_value = fields.Text(string='English Value')
+      type = fields.Many2one('medical.covers.type', 'Type')
       sort = fields.Integer('Sort')
       cover_id = fields.Many2one('medical.price', ondelete='cascade')
 
-
-class InternalHospitalTreatment(models.Model):
-    _name = 'medical.internal.hospital.treatment'
-
-    benefit = fields.Text(string='Benefit')
-    value = fields.Text(string='Value')
-    en_benefit = fields.Text(string='English Benefit')
-    en_value = fields.Text(string='English Value')
-    sort = fields.Integer('Sort')
-    internal_id = fields.Many2one('medical.price', ondelete='cascade')
-
-class OutpatientServices(models.Model):
-    _name = 'medical.outpatient.services'
-
-    benefit = fields.Text(string='Benefit')
-    value = fields.Text(string='Value')
-    en_benefit = fields.Text(string='English Benefit')
-    en_value = fields.Text(string='English Value')
-    sort = fields.Integer('Sort')
-    outpatient_id = fields.Many2one('medical.price', ondelete='cascade')
+#
+# class InternalHospitalTreatment(models.Model):
+#     _name = 'medical.internal.hospital.treatment'
+#
+#     benefit = fields.Text(string='Benefit')
+#     value = fields.Text(string='Value')
+#     en_benefit = fields.Text(string='English Benefit')
+#     en_value = fields.Text(string='English Value')
+#     sort = fields.Integer('Sort')
+#     internal_id = fields.Many2one('medical.price', ondelete='cascade')
+#
+# class OutpatientServices(models.Model):
+#     _name = 'medical.outpatient.services'
+#
+#     benefit = fields.Text(string='Benefit')
+#     value = fields.Text(string='Value')
+#     en_benefit = fields.Text(string='English Benefit')
+#     en_value = fields.Text(string='English Value')
+#     sort = fields.Integer('Sort')
+#     outpatient_id = fields.Many2one('medical.price', ondelete='cascade')
 
 
 class MedicalApi(models.Model):
@@ -147,7 +155,7 @@ class MedicalApi(models.Model):
         outpatient=[]
         result = []
         res=[]
-        maindic={}
+
         internaldic={}
         outpatientdic={}
         dprice = self.calculate_price(data)
@@ -157,111 +165,49 @@ class MedicalApi(models.Model):
             package = 'individual'
         else:
             package = 'sme'
+        for type in self.env['medical.covers.type'].search([]):
+            maindic = {}
+            for cover in self.env['medical.cover'].search([('cover_id.package','=',package),('type', '=', type.id)],order='sort asc'):
+                # print(cover.benefit_key)
 
-        for cover in self.env['medical.cover'].search([('cover_id.package','=',package)],order='sort asc'):
-            # print(cover.benefit_key)
-            res = []
-            if data.get('lang') == 'ar':
-                for rec in self.env['medical.price'].search([('package', '=', package)]):
-                    print(rec.product_name)
+                res = []
+                if data.get('lang') == 'ar':
+                    for rec in self.env['medical.price'].search([('package', '=', package)]):
+                        # print(rec.product_name)
 
-                    for covers in rec.cover_lines:
-                        if covers.benefit == cover.benefit:
-                            val = covers.value
-                            res.append({rec.product_name: val})
-                if cover.benefit not in maindic.keys():
-                    maindic[cover.benefit] = res
-            elif data.get('lang') == 'en':
-                for rec in self.env['medical.price'].search([('package', '=', package)]):
-                    print(rec.product_name)
+                        for covers in rec.cover_lines:
+                                if covers.benefit == cover.benefit:
+                                    val = covers.value
+                                    res.append({rec.product_name: val})
+                    if cover.benefit not in maindic.keys():
+                        maindic[cover.benefit] = res
 
-                    for covers in rec.cover_lines:
-                        if covers.en_benefit == cover.en_benefit:
-                            val = covers.en_value
-                            res.append({rec.product_name: val})
-                if cover.en_benefit not in maindic.keys() and cover.en_benefit != False:
-                    maindic[cover.en_benefit] = res
-        d={}
-        for key, val in maindic.items():
-            for rec in val:
-                for k,v in rec.items():
-                    d['cover']=key
-                    d[k]=v
-            main.append(d)
+                elif data.get('lang') == 'en':
+                    for rec in self.env['medical.price'].search([('package', '=', package)]):
+                        print(rec.product_name)
+
+                        for covers in rec.cover_lines:
+                                if covers.en_benefit == cover.en_benefit:
+                                    val = covers.en_value
+                                    res.append({rec.product_name: val})
+                    if cover.en_benefit not in maindic.keys() and cover.en_benefit != False:
+                        maindic[cover.en_benefit] = res
             d={}
-        for cover in self.env['medical.internal.hospital.treatment'].search([('internal_id.package','=',package)],order='sort asc'):
-            print(cover.benefit)
-            res = []
+            for key, val in maindic.items():
+                for rec in val:
+                    for k,v in rec.items():
+                        d['cover']=key
+                        d[k]=v
+                main.append(d)
+                d={}
             if data.get('lang') == 'ar':
-                for rec in self.env['medical.price'].search([('package', '=', package)]):
-                    print(rec.product_name)
-                    for covers in rec.internal_lines:
-                        if covers.benefit == cover.benefit:
-                            val = covers.value
-                            res.append({rec.product_name: val})
-                if cover.benefit not in internaldic.keys():
-                    internaldic[cover.benefit] = res
+                result.append({'name': type.ar_type, 'plans': main})
             elif data.get('lang') == 'en':
-                for rec in self.env['medical.price'].search([('package', '=', package)]):
-                    print(rec.product_name)
-                    for covers in rec.internal_lines:
-                        if covers.en_benefit == cover.en_benefit:
-                            val = covers.en_value
-                            res.append({rec.product_name: val})
-                if cover.en_benefit not in internaldic.keys() and cover.en_benefit != False:
-                    internaldic[cover.en_benefit] = res
-        print(internaldic)
-        d={}
-        for key, val in internaldic.items():
-            for rec in val:
-                for k,v in rec.items():
-                    d['cover']=key
-                    d[k]=v
-            internal.append(d)
-            d={}
+                result.append({'name': type.type, 'plans': main})
+            main = []
 
-        for cover in self.env['medical.outpatient.services'].search([('outpatient_id.package','=',package)],order='sort asc'):
-            print(cover.benefit)
-            res = []
-            if data.get('lang') == 'ar':
-                for rec in self.env['medical.price'].search([('package', '=', package)]):
-                    print(rec.product_name)
-                    for covers in rec.outpatient_lines:
-                        if covers.benefit == cover.benefit:
-                            val = covers.value
-                            res.append({rec.product_name: val})
-                if cover.benefit not in outpatientdic.keys():
-                    outpatientdic[cover.benefit] = res
-            elif data.get('lang') == 'en':
-                for rec in self.env['medical.price'].search([('package', '=', package)]):
-                    print(rec.product_name)
-                    for covers in rec.outpatient_lines:
-                        if covers.en_benefit == cover.en_benefit:
-                            val = covers.en_value
-                            res.append({rec.product_name: val})
-                if cover.en_benefit not in outpatientdic.keys() and cover.en_benefit != False:
-                    outpatientdic[cover.en_benefit] = res
-        print(outpatientdic)
-        d={}
-        for key, val in outpatientdic.items():
-            for rec in val:
-                for k,v in rec.items():
-                    d['cover']=key
-                    d[k]=v
-            outpatient.append(d)
-            d={}
-        if data.get('lang') == 'ar':
-            result.append({'name': 'main', 'plans': main})
-            result.append({'name': 'العلاج الداخلي بالمستشفيـات', 'plans': internal})
-            result.append({'name': ' خدمات العيادات الخارجية', 'plans': outpatient})
-            print(result)
-            return result
-        else:
-            result.append({'name': 'main', 'plans': main})
-            result.append({'name': 'Internal Hospital Treatment', 'plans': internal})
-            result.append({'name': ' Outpatient Services', 'plans': outpatient})
-            print(result)
-            return result
+        print(result)
+        return result
 
     @api.model
     def create_medical_ticket(self, data):
@@ -279,9 +225,90 @@ class MedicalApi(models.Model):
             {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
              'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type})
         return ticket.id
+        # for cover in self.env['medical.internal.hospital.treatment'].search([('internal_id.package','=',package)],order='sort asc'):
+        #     print(cover.benefit)
+        #     res = []
+        #     if data.get('lang') == 'ar':
+        #         for rec in self.env['medical.price'].search([('package', '=', package)]):
+        #             print(rec.product_name)
+        #             for covers in rec.internal_lines:
+        #                 if covers.benefit == cover.benefit:
+        #                     val = covers.value
+        #                     res.append({rec.product_name: val})
+        #         if cover.benefit not in internaldic.keys():
+        #             internaldic[cover.benefit] = res
+        #     elif data.get('lang') == 'en':
+        #         for rec in self.env['medical.price'].search([('package', '=', package)]):
+        #             print(rec.product_name)
+        #             for covers in rec.internal_lines:
+        #                 if covers.en_benefit == cover.en_benefit:
+        #                     val = covers.en_value
+        #                     res.append({rec.product_name: val})
+        #         if cover.en_benefit not in internaldic.keys() and cover.en_benefit != False:
+        #             internaldic[cover.en_benefit] = res
+        # print(internaldic)
+        # d={}
+        # for key, val in internaldic.items():
+        #     for rec in val:
+        #         for k,v in rec.items():
+        #             d['cover']=key
+        #             d[k]=v
+        #     internal.append(d)
+        #     d={}
+        #
+        # for cover in self.env['medical.outpatient.services'].search([('outpatient_id.package','=',package)],order='sort asc'):
+        #     print(cover.benefit)
+        #     res = []
+        #     if data.get('lang') == 'ar':
+        #         for rec in self.env['medical.price'].search([('package', '=', package)]):
+        #             print(rec.product_name)
+        #             for covers in rec.outpatient_lines:
+        #                 if covers.benefit == cover.benefit:
+        #                     val = covers.value
+        #                     res.append({rec.product_name: val})
+        #         if cover.benefit not in outpatientdic.keys():
+        #             outpatientdic[cover.benefit] = res
+        #     elif data.get('lang') == 'en':
+        #         for rec in self.env['medical.price'].search([('package', '=', package)]):
+        #             print(rec.product_name)
+        #             for covers in rec.outpatient_lines:
+        #                 if covers.en_benefit == cover.en_benefit:
+        #                     val = covers.en_value
+        #                     res.append({rec.product_name: val})
+        #         if cover.en_benefit not in outpatientdic.keys() and cover.en_benefit != False:
+        #             outpatientdic[cover.en_benefit] = res
+        # print(outpatientdic)
+        # d={}
+        # for key, val in outpatientdic.items():
+        #     for rec in val:
+        #         for k,v in rec.items():
+        #             d['cover']=key
+        #             d[k]=v
+        #     outpatient.append(d)
+        #     d={}
+        # if data.get('lang') == 'ar':
+        #     result.append({'name': 'main', 'plans': main})
+        #     result.append({'name': 'العلاج الداخلي بالمستشفيـات', 'plans': internal})
+        #     result.append({'name': ' خدمات العيادات الخارجية', 'plans': outpatient})
+        #     print(result)
+        #     return result
+        # else:
+        #     result.append({'name': 'main', 'plans': main})
+        #     result.append({'name': 'Internal Hospital Treatment', 'plans': internal})
+        #     result.append({'name': ' Outpatient Services', 'plans': outpatient})
+        #     print(result)
+        #     return result
 class aropeHelpDesk(models.Model):
+<<<<<<< HEAD
     _inherit = 'quoate'
+=======
+    _inherit = 'helpdesk_lite.ticket'
+
+
+>>>>>>> cee6555ab4c7bb8905fa64d9d41f8949a7512e67
     medical_product = fields.Many2one('medical.price', string="Medical Product", ondelete='cascade')
+
+
 
 
 
