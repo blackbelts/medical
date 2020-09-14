@@ -151,13 +151,8 @@ class MedicalApi(models.Model):
     @api.model
     def get_price(self, data):
         main = []
-        internal =[]
-        outpatient=[]
         result = []
         res=[]
-
-        internaldic={}
-        outpatientdic={}
         dprice = self.calculate_price(data)
         main.append(dprice)
 
@@ -205,6 +200,9 @@ class MedicalApi(models.Model):
             elif data.get('lang') == 'en':
                 result.append({'name': type.type, 'plans': main})
             main = []
+        for rec in result:
+            if len(rec['plans']) == 0:
+                result.remove(rec)
 
         print(result)
         return result
