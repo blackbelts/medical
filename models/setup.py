@@ -179,7 +179,7 @@ class MedicalApi(models.Model):
                         maindic[cover.benefit] = res
 
                 elif data.get('lang') == 'en':
-                    for rec in self.env['medical.price'].search([('package', '=', package)]):
+                    for rec in self.env['medical.price'].search([('package', '=', package)],order='sort asc'):
                         print(rec.product_name)
 
                         for covers in rec.cover_lines:
