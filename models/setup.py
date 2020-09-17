@@ -198,19 +198,19 @@ class MedicalApi(models.Model):
                         d[k]=v
                 main.append(d)
                 d={}
-            columns = list(dict.fromkeys(products))
+
             if data.get('lang') == 'ar':
-                result.append({'name': type.ar_type, 'plans': main, 'columns': columns})
+                result.append({'name': type.ar_type, 'plans': main})
             elif data.get('lang') == 'en':
-                result.append({'name': type.type, 'plans': main, 'columns': columns})
+                result.append({'name': type.type, 'plans': main})
             main = []
         for rec in result:
             if len(rec['plans']) == 0:
                 result.remove(rec)
-        
+        columns = list(dict.fromkeys(products))
 
         print(result)
-        return result
+        return {'data': result, 'columns': columns}
 
     @api.model
     def create_medical_ticket(self, data):
