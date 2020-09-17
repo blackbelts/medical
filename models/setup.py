@@ -210,7 +210,7 @@ class MedicalApi(models.Model):
         columns = list(dict.fromkeys(products))
 
         print(result)
-        return {'data': result, 'columns': columns}
+        return {'data': result, 'column': columns}
 
     @api.model
     def create_medical_ticket(self, data):
