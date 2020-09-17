@@ -14,6 +14,7 @@ class MedicalPriceTable(models.Model):
                             default='individual')
 
     product_name = fields.Char(string='Product Name')
+    sort = fields.Integer('Sort')
 
 
     price_lines = fields.One2many('medical.price.line','price_id',string='Prices')
@@ -155,6 +156,7 @@ class MedicalApi(models.Model):
         res=[]
         dprice = self.calculate_price(data)
         main.append(dprice)
+        products = []
         if data.get('type') == 'individual' or data.get('type') == 'family':
             package = 'individual'
         else:
@@ -166,7 +168,7 @@ class MedicalApi(models.Model):
 
                 res = []
                 if data.get('lang') == 'ar':
-                    for rec in self.env['medical.price'].search([('package', '=', package)]):
+                    for rec in self.env['medical.price'].search([('package', '=', package)],order='sort asc'):
                         # print(rec.product_name)
 
                         for covers in rec.cover_lines:

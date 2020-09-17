@@ -12,6 +12,7 @@
                         <group>
                             <field name="package"/>
                             <field name="product_name"/>
+                            <field name="sort" />
                         </group>
                     </group>
                     <notebook>
