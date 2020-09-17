@@ -169,6 +169,7 @@ class MedicalApi(models.Model):
                 res = []
                 if data.get('lang') == 'ar':
                     for rec in self.env['medical.price'].search([('package', '=', package)],order='sort asc'):
+                        products.append(rec.product_name)
                         # print(rec.product_name)
 
                         for covers in rec.cover_lines:
@@ -180,6 +181,7 @@ class MedicalApi(models.Model):
 
                 elif data.get('lang') == 'en':
                     for rec in self.env['medical.price'].search([('package', '=', package)],order='sort asc'):
+                        products.append(rec.product_name)
                         print(rec.product_name)
 
                         for covers in rec.cover_lines:
@@ -196,14 +198,16 @@ class MedicalApi(models.Model):
                         d[k]=v
                 main.append(d)
                 d={}
+            columns = list(dict.fromkeys(products))
             if data.get('lang') == 'ar':
-                result.append({'name': type.ar_type, 'plans': main})
+                result.append({'name': type.ar_type, 'plans': main, 'columns': columns})
             elif data.get('lang') == 'en':
-                result.append({'name': type.type, 'plans': main})
+                result.append({'name': type.type, 'plans': main, 'columns': columns})
             main = []
         for rec in result:
             if len(rec['plans']) == 0:
                 result.remove(rec)
+        
 
         print(result)
         return result
