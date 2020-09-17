@@ -7,5 +7,7 @@
 
       <menuitem id="medical_setup" name="Medical Setup" parent="main"
                   action="medical_price_action" sequence="1"/>
+      <menuitem id="medical_notes" name="Medical Notes" parent="main"
+                  action="medical_notes_action" sequence="2"/>
 
 </odoo>

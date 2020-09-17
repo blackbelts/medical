@@ -4,6 +4,19 @@ from dateutil.relativedelta import relativedelta
 from datetime import timedelta, datetime
 
 
+class Notes(models.Model):
+    _name = 'medical.notes'
+    _rec_name = 'note'
+
+    note = fields.Text('Note')
+    ar_note = fields.Text('Arabic Note')
+    package = fields.Selection([('individual', 'Individual'),
+                                ('sme', 'SME'), ('all', 'All')],
+                               'Note For',
+                               default='individual')
+    sort = fields.Integer('Sort')
+
+
 class MedicalPriceTable(models.Model):
     _name = 'medical.price'
     _description = 'Set up Price tables'
@@ -228,6 +241,21 @@ class MedicalApi(models.Model):
             {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
              'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type})
         return ticket.id
+
+    @api.model
+    def get_notes(self,data):
+        result = []
+        if data.get('type') == 'individual' or data.get('type') == 'family':
+            package = ['individual', 'all']
+        else:
+            package = ['sme', 'all']
+        for rec in self.env['medical.notes'].search([('package', 'in', package)],order='sort asc'):
+            if data.get('lang') == 'ar':
+                result.append(rec.ar_note)
+            else:
+                result.append(rec.note)
+        result = list(dict.fromkeys(result))
+        return result
         # for cover in self.env['medical.internal.hospital.treatment'].search([('internal_id.package','=',package)],order='sort asc'):
         #     print(cover.benefit)
         #     res = []
