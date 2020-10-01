@@ -9,15 +9,13 @@
     'version': '0.1',
     'license': 'AGPL-3',
     # any module necessary for this one to work correctly
-    'depends': ['base','helpdesk_inherit'],
+    'depends': ['base','helpdesk_inherit','arope-conf'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
-        'views/setup.xml',
         'views/medical_helpdesk.xml',
-        'views/covers.xml',
         'views/menu_item.xml',
 
 
