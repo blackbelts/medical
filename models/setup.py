@@ -64,7 +64,7 @@ class MedicalCovers(models.Model):
       type = fields.Many2one('medical.covers.type', 'Type')
       sort = fields.Integer('Sort')
       cover_id = fields.Many2one('medical.price', ondelete='cascade')
-
+#
 #
 # class InternalHospitalTreatment(models.Model):
 #     _name = 'medical.internal.hospital.treatment'
@@ -350,7 +350,7 @@ class aropeHelpDesk(models.Model):
             #     for record in product.internal_lines:
             #         internals.append({'cover': record.benefit, 'value': record.value})
             #     for rec in product.outpatient_lines:
-            #         outpatients.append({'cover': rec.benefit, 'value': rec.value})
+            #         omutpatients.append({'cover': rec.benefit, 'value': rec.value})
             #
             #     result.append({'name': product.product_name, 'price': price, 'plan':[{'main':benefit,'Internal Hospital Treatment': internals, 'Outpatient Services': outpatients}]})
             #     res = sorted(result, key=lambda i: i['price'], reverse=True)

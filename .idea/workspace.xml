@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ccb51da5-110c-4d65-9dbb-28340096fadf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/security/ir.model.access.csv" beforeDir="false" afterPath="$PROJECT_DIR$/security/ir.model.access.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/menu_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/setup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/views/setup.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +19,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../motor/views/setup.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Arope-spaces" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -37,10 +33,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1600346592938">
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1600782660537">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1600346592938" />
+    <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1600782660537" />
     <state x="407" y="135" width="618" height="522" key="find.popup" timestamp="1600090923243">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
