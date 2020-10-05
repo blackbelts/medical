@@ -1,0 +1,114 @@
+<odoo>
+
+    <!-- Add a custom form view -->
+
+    <!-- Add a custom form view -->
+    <record id="medical_price_view_form" model="ir.ui.view">
+        <field name="name">Medical Price Form</field>
+        <field name="model">medical.price</field>
+        <field name="arch" type="xml">
+            <form>
+                <button name="price" type="object" string="Price " class="oe_highlight"  />
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="package"/>
+                            <field name="product_name"/>
+                            <field name="sort" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Price" >
+                            <field name="price_lines">
+                                <tree editable="bottom">
+                                    <field name="from_age"/>
+                                    <field name="to_age"/>
+                                    <field name="price"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Covers" >
+                            <field name="cover_lines">
+                                <tree editable="bottom">
+                                    <field name="benefit"/>
+                                    <field name="value"/>
+                                    <field name="en_benefit"/>
+                                    <field name="en_value"/>
+                                    <field name="type"/>
+                                    <field name="sort"/>
+                                </tree>
+                            </field>
+                        </page>
+<!--                        <page string="Internal Hospital Treatment" >-->
+<!--                            <field name="internal_lines">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="benefit"/>-->
+<!--                                    <field name="value"/>-->
+<!--                                    <field name="en_benefit"/>-->
+<!--                                    <field name="en_value"/>-->
+<!--                                    <field name="sort"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                        <page string="Outpatient Services" >-->
+<!--                            <field name="outpatient_lines">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="benefit"/>-->
+<!--                                    <field name="value"/>-->
+<!--                                    <field name="en_benefit"/>-->
+<!--                                    <field name="en_value"/>-->
+<!--                                    <field name="sort"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Add a custom Tree (List) view -->
+    <record id="medical_price_view_tree" model="ir.ui.view">
+        <field name="name">Medical Price List</field>
+        <field name="model">medical.price</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="package"/>
+                <field name="product_name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_note_tree_view" model="ir.ui.view">
+        <field name="name">Medical Note</field>
+        <field name="model">medical.notes</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="note"/>
+                <field name="ar_note"/>
+                <field name="package"/>
+                <field name="sort"/>
+            </tree>
+        </field>
+    </record>
+    <record id="medical_notes_action" model="ir.actions.act_window">
+        <field name="name">Medical Notes</field>
+        <field name="res_model">medical.notes</field>
+        <field name="view_mode">tree,kanban,form,pivot</field>
+<!--        <field name="view_type">form</field>-->
+        <!--        <field name='domain'>['&amp;',('total_broker_commissions','>', '0'),('state','=', 'delivered')]</field>-->
+    </record>
+
+
+    <record model="ir.actions.act_window" id="medical_price_action">
+        <field name="name">Medical Price Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.price</field>
+        <field name="view_id" ref="medical_price_view_tree"/>
+        <field name="view_mode">form,tree</field>
+    </record>
+
+
+
+
+
+</odoo>
