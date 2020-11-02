@@ -1,13 +1,13 @@
 
 <odoo>
-      <menuitem id="main" name="Medical "
-                groups="medical.manager_medical_group"  />
-      <menuitem id="medical_covers_type_setup" name="Covers Type Setup" parent="main"
-                  action="medical_covers_type_action" sequence="0"/>
+        <menuitem id="medical_id" name="Medical" parent="arope-conf.conf_menu"/>
+      <menuitem id="medical_covers_type_setup" name="Covers Type Setup"
+                  action="arope-conf.medical_covers_type_action" sequence="0" parent="medical_id"/>
 
-      <menuitem id="medical_setup" name="Medical Setup" parent="main"
-                  action="medical_price_action" sequence="1"/>
-      <menuitem id="medical_notes" name="Medical Notes" parent="main"
-                  action="medical_notes_action" sequence="2"/>
+      <menuitem id="medical_setup" name="Medical Setup" parent="medical_id"
+                  action="arope-conf.medical_price_action" sequence="1"/>
+
+      <menuitem id="medical_notes" name="Medical Notes" parent="medical_id"
+                  action="arope-conf.medical_notes_action" sequence="2"/>
 
 </odoo>
