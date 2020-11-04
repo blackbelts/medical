@@ -1,6 +1,6 @@
 
 <odoo>
-        <menuitem id="medical_id" name="Medical" parent="arope-conf.conf_menu"/>
+        <menuitem id="medical_id" name="Medical" parent="arope_conf.conf_menu"/>
       <menuitem id="medical_covers_type_setup" name="Covers Type Setup"
                   action="medical_covers_type_action" sequence="0" parent="medical_id"/>
 
