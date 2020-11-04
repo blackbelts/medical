@@ -1,0 +1,40 @@
+<odoo>
+
+    <!-- Add a custom form view -->
+    <record id="medical_covers_type_view_form" model="ir.ui.view">
+        <field name="name">Medical Covers Type</field>
+        <field name="model">medical.covers.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="type"/>
+                        <field name="ar_type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Add a custom Tree (List) view -->
+    <record id="medical_covers_type_view_tree" model="ir.ui.view">
+        <field name="name">Medical Covers Type</field>
+        <field name="model">medical.covers.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="type"/>
+                <field name="ar_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="medical_covers_type_action">
+        <field name="name">Medical Covers Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">medical.covers.type</field>
+        <field name="view_id" ref="medical_covers_type_view_tree"/>
+        <field name="view_mode">form,tree</field>
+    </record>
+
+
+
+</odoo>

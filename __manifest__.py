@@ -16,6 +16,9 @@
         'security/ir.model.access.csv',
         'security/security.xml',
         'views/medical_helpdesk.xml',
+        'views/setup.xml',
+        'views/covers.xml',
+
         'views/menu_item.xml',
 
 
