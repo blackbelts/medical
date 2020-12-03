@@ -189,9 +189,11 @@ class MedicalApi(models.Model):
                 d={}
 
             if data.get('lang') == 'ar':
-                result.append({'name': type.ar_type, 'plans': main})
+                if len(main) != 0:
+                    result.append({'name': type.ar_type, 'plans': main})
             elif data.get('lang') == 'en':
-                result.append({'name': type.type, 'plans': main})
+                if len(main) != 0:
+                    result.append({'name': type.type, 'plans': main})
             main = []
         for rec in result:
             if len(rec['plans']) == 0:
