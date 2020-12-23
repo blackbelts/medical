@@ -219,7 +219,7 @@ class MedicalApi(models.Model):
         ticket = self.env['quoate'].create(
             {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
              'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type,
-             'support_team': support_team, 'source': 'online'})
+             'support_team': support_team})
         self.env['quoate'].search([('id', '=', ticket.id)]).onchange_support_team()
         return ticket.id
 
