@@ -215,9 +215,11 @@ class MedicalApi(models.Model):
             name = 'SMEs Medical Ticket'
         type = 'medical'
         ids = self.env['medical.price'].search([('product_name', '=', data.get('product'))])
+        support_team = self.env['helpdesk_lite.team'].search([('team_support_type', '=', 'medical')],limit=1).id
         ticket = self.env['quoate'].create(
             {'name': name, 'contact_name': data.get('name'), 'phone': data.get('phone'),
-             'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type})
+             'email_from': data.get('mail'), 'medical_product': ids.id, 'ticket_type': type,
+             'support_team': support_team})
         return ticket.id
 
     @api.model
