@@ -102,7 +102,7 @@ class MedicalApi(models.Model):
             for record in self.env['medical.price'].search([('package', '=', data.get('type'))]):
                 for rec in record.price_lines:
                     if rec.from_age <= age[0] and rec.to_age >= age[0]:
-                        dprice.update({'cover': 'price', record.product_name: 'EGP ' + str(rec.price)})
+                        dprice.update({'cover': 'price', record.product_name: 'EGP ' + '{:,}'.format(int(rec.price))})
             return dprice
         elif data.get('type') == 'family':
             # ndata = {'DOB': data.get('dob'), 'issue': data.get('issue')}
@@ -112,7 +112,7 @@ class MedicalApi(models.Model):
                     for rec in record.price_lines:
                         if rec.from_age <= age and rec.to_age >= age:
                             price += rec.price
-                            dprice.update({'cover': 'price', record.product_name: 'EGP ' + str(price)})
+                            dprice.update({'cover': 'price', record.product_name: 'EGP ' + '{:,}'.format(int(price))})
             return dprice
         else:
             for record in self.env['medical.price'].search([('package', '=', 'sme')]):
@@ -121,7 +121,7 @@ class MedicalApi(models.Model):
                     for rec in record.price_lines:
                         if rec.from_age <= age['age'] and rec.to_age >= age['age']:
                             price += rec.price * age['num']
-                            dprice.update({'cover': 'price', record.product_name: 'EGP ' + str(price)})
+                            dprice.update({'cover': 'price', record.product_name: 'EGP ' + '{:,}'.format(int(price))})
             return dprice
 
     @api.model
